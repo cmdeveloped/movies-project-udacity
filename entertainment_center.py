@@ -55,7 +55,7 @@ zootopia = media.Movie("Zootopia",
 
 
 # Movie array containing each instance. 
-movies = [moana, big_hero, frozen, tangled, inside_out, monsters_uni]
+movies = [moana, big_hero, frozen, tangled, inside_out, monsters_uni, good_dinosaur, zootopia]
 
 # Calling method open_movies_page and passing in the array in which to display. 
 fresh_tomatoes.open_movies_page(movies)
