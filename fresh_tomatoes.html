@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Collin's Movies!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Pacifico" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .storyline {
+            display: none;
+            font-weight: 500;
+            padding: 10px;
+        }
+        p {
+            text-align: left;
+        }
+        h4 {
+            font-family: "Bree Serif", serif !important;
+            font-weight: 600;
+        }
+        li {
+            display: inline-block
+        }
+        .hover {
+            display: block;
+            text-align: left;
+        }
+        .movie-tile {
+            width: 30%;
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile h2 {
+            color: #00121d !important;
+            font-family: "Bree Serif", serif !important;
+        }
+        .movie-tile:hover {
+            background-color: #f4f4f4;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+        .navbar.navbar-inverse.navbar-fixed-top {
+            background-color: #00121d !important;
+            background-image: none;
+        }
+        .navbar-inverse .navbar-brand {
+            color: #a9a9a9 !important;
+            font-family: "Pacifico", cursive !important;
+            font-size: 22px !important;
+        }
+        a.navbar-brand:hover {
+            color: #fff !important;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().fadeIn(700, function showNext() {
+            $(this).next("li").fadeIn(700, showNext);
+          });
+          //Animation to reveal and hide storyline
+          $(".movie-tile").mouseover(function(){
+            $(this).children('p, h4').fadeIn();
+          });
+          $(".movie-tile").mouseleave(function(){
+            $(this).children('p, h4').fadeOut();
+          });
+        });
+
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">cmdeveloped   movie trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<li class="movie-tile text-center" data-trailer-youtube-id="M5dnZKrUpdA" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjI4MzU5NTExNF5BMl5BanBnXkFtZTgwNzY1MTEwMDI@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="342">
+    <h2>Moana</h2>
+    <p class='storyline'>In Ancient Polynesia, when a terrible curse incurred by the Demigod Maui reaches an impetuous Chieftain's daughter's island, she answers the Ocean's call to seek out the Demigod to set things right.</p>
+    <h4 class='storyline'>Click for Trailer!</h4>
+</li>
+
+<li class="movie-tile text-center" data-trailer-youtube-id="z3biFxZIJOQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMDliOTIzNmUtOTllOC00NDU3LWFiNjYtMGM0NDc1YTMxNjYxXkEyXkFqcGdeQXVyNTM3NzExMDQ@._V1_UY268_CR3,0,182,268_AL_.jpg" width="220" height="342">
+    <h2>Big Hero 6</h2>
+    <p class='storyline'>The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.</p>
+    <h4 class='storyline'>Click for Trailer!</h4>
+</li>
+
+<li class="movie-tile text-center" data-trailer-youtube-id="TbQm5doF_Uc" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="342">
+    <h2>Frozen</h2>
+    <p class='storyline'>When the newly crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister, Anna, teams up with a mountain man, his playful reindeer, and a snowman to change the weather condition.</p>
+    <h4 class='storyline'>Click for Trailer!</h4>
+</li>
+
+<li class="movie-tile text-center" data-trailer-youtube-id="2f516ZLyC6U" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTAxNDYxMjg0MjNeQTJeQWpwZ15BbWU3MDcyNTk2OTM@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="342">
+    <h2>Tangled</h2>
+    <p class='storyline'>The magically long-haired Rapunzel has spent her entire life in a tower, but now that a runaway thief has stumbled upon her, she is about to discover the world for the first time, and who she really is.</p>
+    <h4 class='storyline'>Click for Trailer!</h4>
+</li>
+
+<li class="movie-tile text-center" data-trailer-youtube-id="seMwpP0yeu4" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BOTgxMDQwMDk0OF5BMl5BanBnXkFtZTgwNjU5OTg2NDE@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="342">
+    <h2>Inside Out</h2>
+    <p class='storyline'>After young Riley is uprooted from her Midwest life and moved to San Francisco, her emotions - Joy, Fear, Anger, Disgust and Sadness - conflict on how best to navigate a new city, house, and school.</p>
+    <h4 class='storyline'>Click for Trailer!</h4>
+</li>
+
+<li class="movie-tile text-center" data-trailer-youtube-id="ODePHkWSg-U" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTUyODgwMDU3M15BMl5BanBnXkFtZTcwOTM4MjcxOQ@@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="342">
+    <h2>Monsters University</h2>
+    <p class='storyline'>A look at the relationship between Mike and Sulley during their days at Monsters University -- when they weren't necessarily the best of friends.</p>
+    <h4 class='storyline'>Click for Trailer!</h4>
+</li>
+
+    </div>
+  </body>
+</html>
